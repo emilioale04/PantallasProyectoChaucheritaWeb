@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realizar Movimiento</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/movimiento.css">
+    <script src="js/realizarMovimiento.js"></script>
+    <link rel="icon" type="image/png" href="images/dollar.png">
+    <script src="https://kit.fontawesome.com/d2aae01839.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="header bg-primary ds-flex jc-sb pd-y-16 pd-x-24 font-secondary text-white align-center">
+        <div></div>
+        <div>
+            <form action="index.html">
+                <input type="hidden" name="ruta" value="logout">
+                <button type="submit" class="logout-button">
+                    <span class="pd-r-8 font-bold font-primary text-base">Cerrar Sesión</span>
+                    <i class="fa-solid fa-right-from-bracket text-white text-xl"></i>
+                </button>
+            </form>
+        </div>
+    </header>
+    <main class="ds-flex jc-sb">
+        <nav class="sidemenu bg-light">
+            <img src="images/wallet-512px.png" alt="wallet">
+            <span class="text-dark font-primary text-center pd-b-16">Chaucherita<br>Web</span>
+            <ul class="menu ls-none">
+                <li>
+                    <form action="home.html">
+                        <input type="hidden" name="ruta" value="home">
+                        <button class="menu-button pd-8" type="submit">
+                            <i class="fa-solid fa-house text-xl"></i> Inicio
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="gestionarCuenta.html">
+                        <input type="hidden" name="ruta" value="listarCuentas">
+                        <button class="menu-button pd-8" type="submit">
+                            <i class="fa-solid fa-gear text-xl"></i> Cuentas
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="gestionarCategoria.html">
+                        <button class="menu-button pd-8" type="submit">
+                            <i class="fa-solid fa-tag text-xl"></i> Categorías
+                        </button>
+                    </form>
+                </li>
+                <li>
+                    <form action="verMovimientos.html">
+                        <button class="menu-button pd-8" type="submit">
+                            <i class="fa-solid fa-eye text-xl"></i> Movimientos
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="ds-flex-column">
+                    <!-- Botones de las pestañas -->
+                    <div class="tabs ds-flex">
+                        <button class="tab-button active" data-target="tab1">Ingreso</button>
+                        <button class="tab-button" data-target="tab2">Egreso</button>
+                        <button class="tab-button" data-target="tab3">Transferencia</button>
+                    </div>
+
+                    <!-- Contenido de las pestañas -->
+                    <div class="pd-24">
+                        <!-- Formulario de Ingreso -->
+                        <div id="tab1" class="tab-pane bg-white">
+                            <form id="ingreso-form" data-balance="5000" class="font-primary">
+                                <div class="form-group pd-y-8">
+                                    <label for="valor-ingreso">Valor:</label>
+                                    <input type="number" id="valor-ingreso" name="valor" class="input text-base"
+                                        placeholder="Ingrese el valor" required step="0.01" min="0" max="9999999999">
+                                </div>
+                                <div class="form-group pd-y-8">
+                                    <label for="concepto-ingreso">Concepto:</label>
+                                    <input id="concepto-ingreso" name="concepto" class="input text-base"
+                                        placeholder="Concepto del ingreso">
+                                </div>
+                                <div class="form-group pd-y-8">
+                                    <label for="categoria-ingreso">Categoria:</label>
+                                    <select id="categoria-ingreso" name="categoriaId" class="input text-base">
+                                        <option value="">Seleccione una categoria</option>
+                                        <option value="1">Salario</option>
+                                        <option value="2">Venta</option>
+                                    </select>
+                                </div>
+                                <div class="pd-y-8">
+                                    <button type="submit" class="button bg-primary text-white">Registrar
+                                        Ingreso</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Formulario de Egreso -->
+                        <div id="tab2" class="tab-pane hidden bg-white">
+                            <form id="egreso-form" data-balance="5000" class="font-primary">
+                                <div class="form-group pd-y-8">
+                                    <label for="valor-egreso">Valor:</label>
+                                    <input type="number" id="valor-egreso" name="valor" class="input text-base"
+                                        placeholder="Ingrese el valor" required step="0.01" min="0" max="9999999999">
+                                </div>
+                                <div class="form-group pd-y-8">
+                                    <label for="concepto-egreso">Concepto:</label>
+                                    <input id="concepto-egreso" name="concepto" class="input text-base"
+                                        placeholder="Concepto del egreso">
+                                </div>
+                                <div class="form-group pd-y-8">
+                                    <label for="categoria-egreso">Categoria:</label>
+                                    <select id="categoria-egreso" name="categoriaId" class="input text-base">
+                                        <option value="">Seleccione una categoria</option>
+                                        <option value="1">Compras</option>
+                                        <option value="2">Servicios</option>
+                                    </select>
+                                </div>
+
+                                <div class="pd-y-8">
+                                    <button type="submit" class="button bg-primary text-white">Registrar
+                                        Egreso</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Formulario de Transferencia -->
+                        <div id="tab3" class="tab-pane hidden bg-white">
+                            <form id="transferencia-form" data-balance="5000" class="font-primary">
+                                <div class="form-group pd-y-8">
+                                    <label for="valor-transferencia">Valor:</label>
+                                    <input type="number" id="valor-transferencia" name="valor" class="input text-base"
+                                        placeholder="Ingrese el valor" required step="0.01" min="0" max="9999999999">
+                                </div>
+                                <div class="form-group pd-y-8">
+                                    <label for="cuenta-destino">Cuenta Destino:</label>
+                                    <select id="cuenta-destino" name="cuentaDestinoId" class="input text-base" required>
+                                        <option value="">Seleccione una cuenta</option>
+                                        <option value="1" data-balance="3000">Cuenta A</option>
+                                        <option value="2" data-balance="4000">Cuenta B</option>
+                                    </select>
+                                    <span class="text-sm text-light pd-t-8">Balance de la cuenta destino: <span
+                                            id="balance-cuenta-destino">N/A</span></span>
+                                </div>
+                                <div class="form-group pd-y-8">
+                                    <label for="concepto-transferencia">Concepto:</label>
+                                    <input id="concepto-transferencia" name="concepto" class="input text-base"
+                                        placeholder="Concepto de la transferencia">
+                                </div>
+                                <div class="form-group pd-y-8">
+                                    <label for="categoria-transferencia">Categoria:</label>
+                                    <select id="categoria-transferencia" name="categoriaId" class="input text-base">
+                                        <option value="">Seleccione una categoria</option>
+                                        <option value="1">Ahorros</option>
+                                        <option value="2">Inversiones</option>
+                                    </select>
+                                </div>
+
+                                <div class="pd-y-8">
+                                    <button type="submit" class="button bg-primary text-white">Realizar
+                                        Transferencia</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="account-info">
+                    <h2 class="text-dark font-primary">Cuenta: Cuenta Ejemplo</h2>
+                    <p class="text-dark font-primary">Balance: 5000</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.getElementById('cuenta-destino').addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            const balance = selectedOption.getAttribute('data-balance');
+            const balanceDisplay = document.getElementById('balance-cuenta-destino');
+            balanceDisplay.textContent = balance ? balance : 'N/A';
+        });
+    </script>
+</body>
+
+</html>
